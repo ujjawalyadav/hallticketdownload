@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Ticket Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MOTILAL NEHRU COLLEGE</h1>
+        <h2>Hall Ticket Managment System</h2>
+        <div class="logo-section">
+            <img id="logo" src="LOGO_MLN.gif" height="80px" alt="Logo">
+            <img id="g20" src="g20_logo.png" height="100px" ="G20">
+        </div>
+        <form id="hallTicketForm">
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" required maxlength="14" oninput="formatRollNumber(this)">
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <button type="button" onclick="showHallTicket()">Submit</button>
+            <button type="reset" onclick="resetForm()">Reset</button>
+        </form>
+
+        <div id="error" class="hidden">
+            <p>Roll number not found</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

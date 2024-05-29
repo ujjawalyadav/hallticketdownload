@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Ticket</title>
+    <link rel="stylesheet" href="hall.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hall Ticket</h1>
+        <div class="photo-section">
+            <img id="photo" src="https://admission.sol.du.ac.in/photo/21/Photo/210100003719.jpg" alt="Photo">
+        </div>
+        <p id="ticketRollNumber"></p>
+        <p id="ticketDOB"></p>
+        <p id="ticketName"></p>
+        <h2>Exam Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject / Paper</th>
+                    <th>Unique Paper Code</th>
+                    <th>Part</th>
+                    <th>Day</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody id="examDetails">
+                <tr>
+                    <td>Education: Media in Education</td>
+                    <td>62433904</td>
+                    <td>VI</td>
+                    <td>Sunday</td>
+                    <td>26/05/2024</td>
+                    <td>14:30</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ENGLISH : Media and Communication Skills</td>
+                    <td>62035919</td>
+                    <td>VI</td>
+                    <td>Saturday</td>
+                    <td>01/06/2024</td>
+                    <td>14:30</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Education in India: Policy and Practice</td>
+                    <td>62437601</td>
+                    <td>VI</td>
+                    <td>Sunday</td>
+                    <td>02/06/2024</td>
+                    <td>14:30</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Introducton to International Relation</td>
+                    <td>62324407</td>
+                    <td>IV</td>
+                    <td id="randomDay">Wednesday</td>
+                    <td>05/06/2024</td>
+                    <td>14:30</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Political Science: Understanding Globalization</td>
+                    <td>62327601</td>
+                    <td>VI</td>
+                    <td>Saturday</td>
+                    <td>08/06/2024</td>
+                    <td>14:30</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="savePDF()">Save PDF</button>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('ticketRollNumber').textContent = `Roll Number: ${params.get('rollNumber')}`;
+            document.getElementById('ticketDOB').textContent = `Date of Birth: ${params.get('dob')}`;
+            document.getElementById('ticketName').textContent = `Name: ${params.get('name')}`;
+
+            // Generate a random day for the Political Science paper
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const randomDay = days[Math.floor(Math.random() * days.length)];
+            document.getElementById('randomDay').textContent = randomDay;
+        };
+
+        function goBack() {
+            window.history.back();
+        }
+        function savePDF() {
+            var pdfURL = 'hall_ticket.pdf';
+            var fileName = pdfURL.substring(pdfURL.lastIndexOf('/')+1);
+
+            var a = document.createElement('a');
+            a.href = pdfURL;
+            a.download = fileName;
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
